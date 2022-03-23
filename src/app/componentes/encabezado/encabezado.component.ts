@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HAMMER_LOADER } from '@angular/platform-browser';
 import { PorfolioDataService } from 'src/app/servicios/porfolio-data.service';
+import { __makeTemplateObject } from 'tslib';
 
 @Component({
   selector: 'app-encabezado',
@@ -7,14 +9,20 @@ import { PorfolioDataService } from 'src/app/servicios/porfolio-data.service';
   styleUrls: ['./encabezado.component.css']
 })
 export class EncabezadoComponent implements OnInit {
+  datos: any;
+
 
   constructor(private datosporfolio: PorfolioDataService) { }
 
   ngOnInit(): void {
     this.datosporfolio.serviceprofoliook();
     this.datosporfolio.obtenerDataJson().subscribe(data => {
-      console.log(data);
+
+      this.datos = data;
+      console.log(this.datos.Persona.apellido);
+
     });
+
   }
 
 }
